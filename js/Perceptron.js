@@ -1,6 +1,7 @@
 // perceptron class
 class Perceptron {
     constructor(weightsNum) {
+        this.learning_rate = 0.1;
         this.weights = new Array(weightsNum);
         this.initiateWeights();
     }
@@ -16,9 +17,18 @@ class Perceptron {
         for (let i = 0; i < this.weights.length; i++) {
             sum += inputs[i] * this.weights[i];
         }
-        console.log(sum);
+        
         let output = sign(sum);
         return output;
+    }
+
+    train(inputs, target) {
+        let guess = this.guess(inputs);
+        let error = target - guess;
+        // tune the weights
+        for (let i = 0; i < this.weights.length; i++) {
+            this.weights[i] += error * inputs[i] * this.learning_rate;
+        }
     }
 
     printWeights() {

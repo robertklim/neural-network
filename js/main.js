@@ -33,4 +33,32 @@ function draw() {
         points[i].show();
     }
 
+    for (let i = 0; i < points.length; i++) {
+        let inputs = [points[i].x, points[i].y];
+        let target = points[i].label;
+        
+        //perceptron.train(inputs, target);
+
+        let guess = perceptron.guess(inputs);
+        if (guess == target) {
+            fill(0, 255, 0);
+        } else {
+            fill(255, 0, 0);
+        }
+        noStroke();
+        ellipse(points[i].x, points[i].y, 4, 4);
+
+    }
+
+    // perceptron.printWeights();
+
+}
+
+function mousePressed() {
+    for (let i = 0; i < points.length; i++) {
+        let inputs = [points[i].x, points[i].y];
+        let target = points[i].label;
+
+        perceptron.train(inputs, target);
+    }
 }
