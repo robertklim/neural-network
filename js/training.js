@@ -9,7 +9,10 @@ class Point {
         this.x = x;
         this.y = y;
         this.label;
-        if (this.x > this.y) {
+
+        let lineY = lineFunction(this.x);
+
+        if (this.y > lineY) {
             this.label = 1;
         } else {
             this.label = -1;
