@@ -1,8 +1,13 @@
+function lineFunction(x) {
+    // y = ax + b
+    return 0.3 * x + 0.2;
+}
+
 // known training set
 class Point {
-    constructor() {
-        this.x = random(-1, 1);
-        this.y = random(-1, 1);
+    constructor(x = random(-1, 1), y = random(-1, 1)) {
+        this.x = x;
+        this.y = y;
         this.label;
         if (this.x > this.y) {
             this.label = 1;

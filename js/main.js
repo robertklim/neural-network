@@ -26,7 +26,10 @@ function draw() {
 
     // diagonal line
     stroke(0);
-    line(0, height, width, 0);
+    //line(0, height, width, 0);
+    let p1 = new Point(-1, lineFunction(-1));
+    let p2 = new Point(1, lineFunction(1));
+    line(p1.getPixelX(), p1.getPixelY(), p2.getPixelX(), p2.getPixelY(),);
 
     // show training set
     for (let i = 0; i < points.length; i++) {
