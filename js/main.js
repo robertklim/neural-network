@@ -26,7 +26,7 @@ function draw() {
 
     // diagonal line
     stroke(0);
-    line(0, 0, width, height);
+    line(0, height, width, 0);
 
     // show training set
     for (let i = 0; i < points.length; i++) {
@@ -46,7 +46,7 @@ function draw() {
             fill(255, 0, 0);
         }
         noStroke();
-        ellipse(points[i].x, points[i].y, 4, 4);
+        ellipse(points[i].getPixelX(), points[i].getPixelY(), 4, 4);
 
     }
 

@@ -1,14 +1,22 @@
 // known training set
 class Point {
     constructor() {
-        this.x = floor(random(width));
-        this.y = floor(random(height));
+        this.x = random(-1, 1);
+        this.y = random(-1, 1);
         this.label;
         if (this.x > this.y) {
             this.label = 1;
         } else {
             this.label = -1;
         }
+    }
+
+    getPixelX() {
+        return map(this.x, -1, 1, 0, width);
+    }
+
+    getPixelY() {
+        return map(this.y, -1, 1, height, 0);
     }
 
     show() {
@@ -18,7 +26,9 @@ class Point {
         } else {
             fill(0);
         }
-        ellipse(this.x, this.y, 4, 4);
+        let px = this.getPixelX();
+        let py = this.getPixelY();
+        ellipse(px, py, 4, 4);
     }
 
 }
