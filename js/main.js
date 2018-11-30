@@ -10,7 +10,7 @@ function setup() {
         points[i] = new Point();
     }
 
-    perceptron = new Perceptron(2);
+    perceptron = new Perceptron(3);
     perceptron.printWeights();
 
     let inputs = [random(-1, 1), random(-1, 1)];
@@ -25,12 +25,17 @@ function setup() {
 function draw() {
     background(245);
 
-    // diagonal line
+    // draw correct division line
     stroke(0);
     //line(0, height, width, 0);
     let p1 = new Point(-1, lineFunction(-1));
     let p2 = new Point(1, lineFunction(1));
     line(p1.getPixelX(), p1.getPixelY(), p2.getPixelX(), p2.getPixelY(),);
+
+    // draw petceptron's line
+    let p3 = new Point(-1, perceptron.guessY(-1));
+    let p4 = new Point(1, perceptron.guessY(1));
+    line(p3.getPixelX(), p3.getPixelY(), p4.getPixelX(), p4.getPixelY());
 
     // show training set
     for (let i = 0; i < points.length; i++) {
@@ -38,7 +43,7 @@ function draw() {
     }
 
     for (let i = 0; i < points.length; i++) {
-        let inputs = [points[i].x, points[i].y];
+        let inputs = [points[i].x, points[i].y, points[i].bias];
         let target = points[i].label;
         
         //perceptron.train(inputs, target);
@@ -57,7 +62,7 @@ function draw() {
     // perceptron.printWeights();
 
     let training = points[trainingIndex];
-    let inputs = [training.x, training.y];
+    let inputs = [training.x, training.y, training.bias];
     let target = training.label;
     perceptron.train(inputs, target);
     trainingIndex++;

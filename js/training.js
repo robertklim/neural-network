@@ -1,6 +1,6 @@
 function lineFunction(x) {
     // y = ax + b
-    return 0.3 * x + 0.2;
+    return 0.8 * x - 0.2;
 }
 
 // known training set
@@ -8,6 +8,7 @@ class Point {
     constructor(x = random(-1, 1), y = random(-1, 1)) {
         this.x = x;
         this.y = y;
+        this.bias = 1;
         this.label;
 
         let lineY = lineFunction(this.x);
