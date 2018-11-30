@@ -1,5 +1,6 @@
 let perceptron;
 let points = new Array(100);
+let trainingIndex = 0;
 
 function setup() {
     createCanvas(600, 600);
@@ -55,13 +56,22 @@ function draw() {
 
     // perceptron.printWeights();
 
-}
-
-function mousePressed() {
-    for (let i = 0; i < points.length; i++) {
-        let inputs = [points[i].x, points[i].y];
-        let target = points[i].label;
-
-        perceptron.train(inputs, target);
+    let training = points[trainingIndex];
+    let inputs = [training.x, training.y];
+    let target = training.label;
+    perceptron.train(inputs, target);
+    trainingIndex++;
+    if (trainingIndex === points.length) {
+        trainingIndex = 0;
     }
+
 }
+
+// function mousePressed() {
+//     for (let i = 0; i < points.length; i++) {
+//         let inputs = [points[i].x, points[i].y];
+//         let target = points[i].label;
+
+//         perceptron.train(inputs, target);
+//     }
+// }
