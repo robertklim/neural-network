@@ -1,7 +1,7 @@
 class NeuralNetwork {
-    constructor(numInput, numHidden, numOutput) {
-        this.inpup_nodes = numInput;
-        this.hidden_nodes = numHidden;
-        this.output_nodes = numOutput;
+    constructor(inpup_nodes, hidden_nodes, output_nodes) {
+        this.inpup_nodes = inpup_nodes;
+        this.hidden_nodes = hidden_nodes;
+        this.output_nodes = output_nodes;
     }
 }
