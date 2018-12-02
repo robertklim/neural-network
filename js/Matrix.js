@@ -39,14 +39,33 @@ class Matrix {
 
     multiply(n) {
         if (n instanceof Matrix) {
-            // element wise multiply
-            for (let i = 0; i < this.rows; i++) {
-                for (let j = 0; j < this.cols; j++) {
-                    this.matrix[i][j] *= n.matrix[i][j];
+            // Matrix product
+            if (this.cols != n.rows) {
+                console.log('Columns of A must match rows of B');
+                return undefined;
+            }
+            let a = this;
+            let b = n;
+            let result = new Matrix(a.rows, b.cols);
+            for (let i = 0; i < result.rows; i++) {
+                for (let j = 0; j < result.cols; j++) {
+                    // Dot product
+                    let sum = 0;
+                    for (let k = 0; k < a.cols; k++) {
+                        sum += a.matrix[i][k] * b.matrix[k][j];
+                    }
+                    result.matrix[i][j] = sum;
                 }
             }
+            return result;
+            // Hadamard product - element wise multiply
+            // for (let i = 0; i < this.rows; i++) {
+            //     for (let j = 0; j < this.cols; j++) {
+            //         this.matrix[i][j] *= n.matrix[i][j];
+            //     }
+            // }
         } else {
-            // scalar wise multiply
+            // Scalar product - scalar wise multiply
             for (let i = 0; i < this.rows; i++) {
                 for (let j = 0; j < this.cols; j++) {
                     this.matrix[i][j] *= n;
