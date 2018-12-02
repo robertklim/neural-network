@@ -20,17 +20,37 @@ class Matrix {
     }
 
     add(n) {
-        for (let i = 0; i < this.rows; i++) {
-            for (let j = 0; j < this.cols; j++) {
-                this.matrix[i][j] += n;
+        if (n instanceof Matrix) {
+            // element wise add
+            for (let i = 0; i < this.rows; i++) {
+                for (let j = 0; j < this.cols; j++) {
+                    this.matrix[i][j] += n.matrix[i][j];
+                }
+            }
+        } else {
+            // scalar wise add
+            for (let i = 0; i < this.rows; i++) {
+                for (let j = 0; j < this.cols; j++) {
+                    this.matrix[i][j] += n;
+                }
             }
         }
     }
 
     multiply(n) {
-        for (let i = 0; i < this.rows; i++) {
-            for (let j = 0; j < this.cols; j++) {
-                this.matrix[i][j] *= n;
+        if (n instanceof Matrix) {
+            // element wise multiply
+            for (let i = 0; i < this.rows; i++) {
+                for (let j = 0; j < this.cols; j++) {
+                    this.matrix[i][j] *= n.matrix[i][j];
+                }
+            }
+        } else {
+            // scalar wise multiply
+            for (let i = 0; i < this.rows; i++) {
+                for (let j = 0; j < this.cols; j++) {
+                    this.matrix[i][j] *= n;
+                }
             }
         }
     }
