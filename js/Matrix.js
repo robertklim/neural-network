@@ -20,6 +20,17 @@ class Matrix {
         return m;
     }
 
+    static subtract(a, b) {
+        // return matrix a-b
+        let result = new Matrix(a.rows, a.cols);
+        for (let i = 0; i < result.rows; i++) {
+            for (let j = 0; j < result.cols; j++) {
+                result.data[i][j] = a.data[i][j] - b.data[i][j];
+            }
+        }
+        return result;
+    }
+
     toArray() {
         let arr = [];
         for (let i = 0; i < this.rows; i++) {
