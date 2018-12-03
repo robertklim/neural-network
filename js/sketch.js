@@ -1,14 +1,11 @@
 let nn;
 
 function setup() {
-    nn = new NeuralNetwork(3, 4, 2);
-    let a = new Matrix(2, 3);
-    let b = new Matrix(3, 2);
-    a.randomize();
-    a.randomize();
-    a.print();
-    b.print();
-
+    // this is the goal
+    nn = new NeuralNetwork(2, 2, 1);
+    let input = [1, 0];
+    let output = nn.feedforward(input);
+    console.table(output.data);
 }
 
 function draw() {
