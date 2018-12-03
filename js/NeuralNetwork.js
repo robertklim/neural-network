@@ -32,12 +32,12 @@ class NeuralNetwork {
         hidden.map(sigmoid);
 
         // generate output
-        let output = new Matrix.multiply(this.weights_ho, hidden);
+        let output = Matrix.multiply(this.weights_ho, hidden);
         output.add(this.bias_o);
         // activation function
         output.map(sigmoid);
 
-        return output;
+        return output.toArray();
     }
 
 }

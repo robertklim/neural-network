@@ -20,6 +20,16 @@ class Matrix {
         return m;
     }
 
+    toArray() {
+        let arr = [];
+        for (let i = 0; i < this.rows; i++) {
+            for (let j = 0; j < this.cols; j++) {
+                arr.push(this.data[i][j]);
+            }
+        }
+        return arr;
+    }
+
     randomize() {
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
