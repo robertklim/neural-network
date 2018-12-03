@@ -47,13 +47,21 @@ class NeuralNetwork {
         outputs = Matrix.fromArray(outputs);
         targets = Matrix.fromArray(targets);
 
-        // calculate arror
+        // calculate error
         // ERROR = TARGETS - OUTPUTS
 
-        let error = Matrix.subtract(targets, outputs);
+        // calculate output errors
+        let output_errors = Matrix.subtract(targets, outputs);
+
+        // calculate hidden layer errors
+        // simplify by using weights only, not (w1/w1+w2+...+wn) * e1
+        let weights_ho_t =  Matrix.transpose(this.weights_ho);
+        let hidden_errors = Matrix.multiply(weights_ho_t, output_errors);
+        hidden_errors.print();
+
         // outputs.print();
         // targets.print();
-        // error.print();
+        // output_error.print();
     }
 
 }
