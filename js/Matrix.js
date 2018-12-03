@@ -82,6 +82,16 @@ class Matrix {
         }
     }
 
+    map(fn) {
+        // apply a function to every element of matrix
+        for (let i = 0; i < this.rows; i++) {
+            for (let j = 0; j < this.cols; j++) {
+                let val = this.data[i][j];
+                this.data[i][j] = fn(val);
+            }
+        }
+    }
+
     print() {
         console.table(this.data);
     }
