@@ -23,21 +23,37 @@ class NeuralNetwork {
         this.bias_o.randomize();
     }
 
-    feedforward(input_array) {
+    feedforward(inputs_array) {
         // generate hidden outputs
-        let input = Matrix.fromArray(input_array);
-        let hidden = Matrix.multiply(this.weights_ih, input);
+        let inputs = Matrix.fromArray(inputs_array);
+        let hidden = Matrix.multiply(this.weights_ih, inputs);
         hidden.add(this.bias_h);
         // activation function
         hidden.map(sigmoid);
 
         // generate output
-        let output = Matrix.multiply(this.weights_ho, hidden);
-        output.add(this.bias_o);
+        let outputs = Matrix.multiply(this.weights_ho, hidden);
+        outputs.add(this.bias_o);
         // activation function
-        output.map(sigmoid);
+        outputs.map(sigmoid);
 
-        return output.toArray();
+        return outputs.toArray();
+    }
+
+    train(inputs, targets) {
+        let outputs = this.feedforward(inputs);
+
+        // convert array to Matrix object
+        outputs = Matrix.fromArray(outputs);
+        targets = Matrix.fromArray(targets);
+
+        // calculate arror
+        // ERROR = TARGETS - OUTPUTS
+
+        let error = Matrix.subtract(targets, outputs);
+        // outputs.print();
+        // targets.print();
+        // error.print();
     }
 
 }
