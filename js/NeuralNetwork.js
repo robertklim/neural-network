@@ -19,6 +19,8 @@ class NeuralNetwork {
         this.bias_h = new Matrix(this.hidden_nodes, 1);
         // output layer bias
         this.bias_o = new Matrix(this.hidden_nodes, 1);
+        this.bias_h.randomize();
+        this.bias_o.randomize();
     }
 
     feedforward(input_array) {
@@ -29,7 +31,13 @@ class NeuralNetwork {
         // activation function
         hidden.map(sigmoid);
 
-        return hidden;
+        // generate output
+        let output = new Matrix.multiply(this.weights_ho, hidden);
+        output.add(this.bias_o);
+        // activation function
+        output.map(sigmoid);
+
+        return output;
     }
 
 }
