@@ -98,16 +98,19 @@ class Matrix {
     }
 
     multiply(n) {
-        // Hadamard product - element wise multiply
-        // for (let i = 0; i < this.rows; i++) {
-        //     for (let j = 0; j < this.cols; j++) {
-        //         this.data[i][j] *= n.data[i][j];
-        //     }
-        // }
-        // Scalar product - scalar wise multiply
-        for (let i = 0; i < this.rows; i++) {
-            for (let j = 0; j < this.cols; j++) {
-                this.data[i][j] *= n;
+        if (n instanceof Matrix) {
+            // Hadamard product - element wise multiply
+            for (let i = 0; i < this.rows; i++) {
+                for (let j = 0; j < this.cols; j++) {
+                    this.data[i][j] *= n.data[i][j];
+                }
+            }
+        } else {
+            // Scalar product - scalar wise multiply
+            for (let i = 0; i < this.rows; i++) {
+                for (let j = 0; j < this.cols; j++) {
+                    this.data[i][j] *= n;
+                }
             }
         }
     }
@@ -120,6 +123,18 @@ class Matrix {
                 this.data[i][j] = fn(val);
             }
         }
+    }
+
+    static map(matrix, fn) {
+        let result = new Matrix(matrix.rows, matrix.cols);
+        // apply a function to every element of matrix
+        for (let i = 0; i < matrix.rows; i++) {
+            for (let j = 0; j < matrix.cols; j++) {
+                let val = matrix.data[i][j];
+                result.data[i][j] = fn(val);
+            }
+        }
+        return result;
     }
 
     print() {
