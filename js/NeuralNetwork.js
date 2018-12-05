@@ -84,8 +84,10 @@ class NeuralNetwork {
         let hidden_t = Matrix.transpose(hidden);
         let weights_ho_deltas = Matrix.multiply(gradients, hidden_t);
 
-        // adjust
+        // adjust the weights by deltas
         this.weights_ho.add(weights_ho_deltas);
+        // sdjust the bias by its deltas
+        this.bias_o.add(gradients);
 
         // calculate hidden layer errors
         // simplify by using weights only, not (w1/w1+w2+...+wn) * e1
@@ -101,8 +103,10 @@ class NeuralNetwork {
         let inputs_t = Matrix.transpose(inputs);
         let weights_ih_deltas = Matrix.multiply(hidden_gradient, inputs_t);
 
-        // adjust
+        // adjust the weights by deltas
         this.weights_ih.add(weights_ih_deltas);
+        // adjust the bias by its deltas
+        this.bias_h.add(hidden_gradient);
     }
 
 }
