@@ -52,6 +52,10 @@ class Matrix {
     add(n) {
         if (n instanceof Matrix) {
             // element wise add
+            if (this.rows !== n.rows || this.cols !== n.cols) {
+                console.log('Columns and Rows of A must match Columns and Rows of B.');
+                return;
+            }
             for (let i = 0; i < this.rows; i++) {
                 for (let j = 0; j < this.cols; j++) {
                     this.data[i][j] += n.data[i][j];
