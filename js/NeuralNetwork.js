@@ -23,12 +23,12 @@ class NeuralNetwork {
         // hidden layer bias
         this.bias_h = new Matrix(this.hidden_nodes, 1);
         // output layer bias
-        this.bias_o = new Matrix(this.hidden_nodes, 1);
+        this.bias_o = new Matrix(this.output_nodes, 1);
         this.bias_h.randomize();
         this.bias_o.randomize();
 
         // learning rate
-        this.learning_rate = 0.01;
+        this.learning_rate = 0.1;
     }
 
     feedforward(inputs_array) {
