@@ -28,6 +28,7 @@ let training_data = [
 function setup() {
     createCanvas(400, 400);
     nn = new NeuralNetwork(2, 32, 1);
+    nn.setLearningRate(0.01);
 }
 
 function draw() {
